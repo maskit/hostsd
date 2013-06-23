@@ -35,23 +35,25 @@ function getAnswer(rinfo, question) {
 
 	if (question.type === 1) { // A record
 		key = question.name.join('.');
-		hosts = hostsd.getHosts(rinfo.address);
-		ipaddr = hosts[key];
-		if(ipaddr && net.isIPv4(ipaddr)) {
-			tmp = ipaddr.split('.');
-			value = (parseInt(tmp[0]) << 24)
-				+ (parseInt(tmp[1]) << 16)
-				+ (parseInt(tmp[2]) << 8)
-				+ parseInt(tmp[3]);
-			answer = {
-				name:  question.name,
-				type:  question.type,
-				class: question.class,
-				ttl:   60,
-				len:   4,
-				data:  value
-			};
-		}
+		hosts = hostsd.getHostsByClient(rinfo.address);
+        if (hosts) {
+            ipaddr = hosts.lookup(key);
+            if(ipaddr && net.isIPv4(ipaddr)) {
+                tmp = ipaddr.split('.');
+                value = (parseInt(tmp[0]) << 24)
+                    + (parseInt(tmp[1]) << 16)
+                    + (parseInt(tmp[2]) << 8)
+                    + parseInt(tmp[3]);
+                answer = {
+                    name:  question.name,
+                    type:  question.type,
+                    class: question.class,
+                    ttl:   60,
+                    len:   4,
+                    data:  value
+                };
+            }
+        }
 	}
 
 	return answer;

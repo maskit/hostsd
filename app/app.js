@@ -5,10 +5,10 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path')
-  , hostsd = require('./lib/hostsd.js')
+  , hosts  = require('./routes/hosts')
+  , http   = require('http')
+  , path   = require('path')
+  , hostsd = require('./lib/hostsd.js');
 
 var app = express()
   , dnsServer = new hostsd.DnsServer();
@@ -30,7 +30,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/:hosts_name', hosts.view);
+app.post('/:hosts_name', hosts.update);
 
 dnsServer.listen(3001);
 http.createServer(app).listen(app.get('port'), function(){

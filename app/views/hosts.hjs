@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>hostsd</h1>
+    <form method="POST">
+      <p>name: {{ name }}</p>
+      <textarea name="hosts">{{ hosts }}</textarea>
+      <input type="submit" />
+    </form>
+  </body>
+</html>

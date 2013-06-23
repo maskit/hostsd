@@ -5,7 +5,13 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
+    <h1>hostsd</h1>
+    <p>IP Address: {{address}}</p>
+    <p>hosts: {{current_hosts}}</p>
+    <h2>List</h2>
+    <ul>
+      <li><a href="?hosts=abc">abc</a></li>
+      <li><a href="?hosts=xyz">xyz</a></li>
+    </ul>
   </body>
 </html>
