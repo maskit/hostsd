@@ -8,10 +8,10 @@ var express = require('express')
   , hosts  = require('./routes/hosts')
   , http   = require('http')
   , path   = require('path')
-  , hostsd = require('./lib/hostsd.js');
+  , hostsd = require('hostsd');
 
 var app = express()
-  , dnsServer = new hostsd.DnsServer();
+  , hostsServer = new hostsd.createServer();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -28,14 +28,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
-hostsd.updateHostsByName(hostsd.DEFAULT_NAME, new hostsd.Hosts('hostsd 127.0.0.1'));
-
+hostsServer.updateHostsByName(hostsd.DEFAULT_NAME, new hostsd.Hosts('hostsd 127.0.0.1'));
+app.locals.hostsServer = hostsServer;
 app.get('/', routes.index);
 app.get('/:hosts_name', hosts.view);
 app.post('/:hosts_name', hosts.update);
 
-dnsServer.listen(3001);
+hostsServer.listen(3001);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

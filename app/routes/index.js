@@ -1,6 +1,5 @@
-var hostsd = require('../lib/hostsd.js');
-
 exports.index = function(req, res){
+  var hostsServer = req.app.locals.hostsServer;
   var data = {
     title: 'hostsd',
   },
@@ -8,11 +7,11 @@ exports.index = function(req, res){
 
   client = req.socket.remoteAddress;
   if (req.query['hosts']) {
-    hostsd.setHostsName(client, req.query['hosts']);
+    hostsServer.setHostsName(client, req.query['hosts']);
   }
 
   data.address       = client;
-  data.current_hosts = hostsd.getHostsName(client);
+  data.current_hosts = hostsServer.getHostsName(client);
 
   res.render('index', data);
 };
