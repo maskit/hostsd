@@ -1,0 +1,31 @@
+{
+  "name": "hostsd",
+  "description": "hostsd NPM package",
+  "version": "0.0.1",
+  "keywords": [
+    "hostsd",
+    "hosts",
+  ],
+  "main": "./lib/hostsd.js",
+  "homepage": "https://github.com/maskit/hostsd",
+  "author": {
+    "name": "maskit",
+    "email": "m4sk17@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maskit/hostsd.git"
+  },
+  "licenses": [
+    {
+      "type": "AGPL",
+      "url": "http://www.gnu.org/licenses/agpl.txt"
+    }
+  ],
+  "dependencies": {
+  },
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/maskit/hostsd/issues"
+  },
+}
