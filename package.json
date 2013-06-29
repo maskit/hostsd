@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "keywords": [
     "hostsd",
-    "hosts",
+    "hosts"
   ],
   "main": "./lib/hostsd.js",
   "homepage": "https://github.com/maskit/hostsd",
