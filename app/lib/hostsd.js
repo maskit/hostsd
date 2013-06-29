@@ -1,7 +1,4 @@
-var Hosts     = require('./hosts.js');
-var hosts_map = {
-        'default': new Hosts()
-    }, 
+var hosts_map = {},
     map      = {};
 
 module.exports.getHostsByClient = function (client) {
@@ -18,7 +15,7 @@ module.exports.updateHostsByName = function (name, hosts) {
 };
 
 module.exports.getHostsName = function (client) {
-	return map[client] || 'default';	
+	return map[client] || this.DEFAULT_NAME;
 };
 
 module.exports.setHostsName = function (client, name) {
@@ -26,3 +23,5 @@ module.exports.setHostsName = function (client, name) {
 };
 
 module.exports.DnsServer = require('./dnsserver.js');
+module.exports.Hosts     = require('./hosts.js');
+module.exports.DEFAULT_HOSTS = 'default';

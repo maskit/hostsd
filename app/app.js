@@ -29,6 +29,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+hostsd.updateHostsByName(hostsd.DEFAULT_NAME, new hostsd.Hosts('hostsd 127.0.0.1'));
+
 app.get('/', routes.index);
 app.get('/:hosts_name', hosts.view);
 app.post('/:hosts_name', hosts.update);
